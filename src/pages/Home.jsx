@@ -71,7 +71,7 @@ const Home = () => {
               <img
                 src="https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=800&q=80"
                 alt="Pasta"
-                className="absolute bottom-0 -right-5 w-55 h-50 object-cover rounded-2xl border  border-white/10 shadow-xl z-10 "
+                className="absolute bottom-0 -right-12 lg:-right-5 w-55 h-50 object-cover rounded-2xl border  border-white/10 shadow-xl z-10 "
               />
             </div>
           </div>
