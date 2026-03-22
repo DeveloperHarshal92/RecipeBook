@@ -31,6 +31,12 @@ const Navbar = () => {
           >
             Create Recipe
           </NavLink>
+          <NavLink
+            className={(e) => (e.isActive ? "text-red-300" : "")}
+            to="/fav"
+          >
+            Favorite
+          </NavLink>
         </div>
 
         <div className="flex items-center gap-4">

@@ -11,26 +11,27 @@ const RecipeDetails = () => {
   const params = useParams();
   const recipe = data.find((recipe) => String(recipe.id) === String(params.id));
 
-  const SubmitHandler = (recipe) => {
+  const UpdateHandler = (recipe) => {
     const index = data.findIndex(
       (recipe) => String(recipe.id) === String(params.id),
     );
     const copyRecipe = [...data];
     copyRecipe[index] = { ...copyRecipe[index], ...recipe };
     setData(copyRecipe);
+    localStorage.setItem("recipes", JSON.stringify(copyRecipe));
     toast.success("Recipe updated successfully!");
   };
   const { register, handleSubmit, reset } = useForm({});
   useEffect(() => {
     if (recipe) {
       reset({
-        image: recipe.image,
-        title: recipe.title,
-        chef: recipe.chef,
-        desc: recipe.desc,
-        ingr: recipe.ingr,
-        inst: recipe.inst,
-        category: recipe.category,
+        image: recipe?.image,
+        title: recipe?.title,
+        chef: recipe?.chef,
+        desc: recipe?.desc,
+        ingr: recipe?.ingr,
+        inst: recipe?.inst,
+        category: recipe?.category,
       });
     }
   }, [recipe, reset]);
@@ -38,6 +39,8 @@ const RecipeDetails = () => {
   const deleteHandler = () => {
     const filteredRecipe = data.filter((recipe) => recipe.id !== params.id);
     setData(filteredRecipe);
+    localStorage.setItem("recipes", JSON.stringify(filteredRecipe));
+
     toast.success("Recipe deleted successfully!");
     navigate("/recipes");
   };
@@ -91,7 +94,7 @@ const RecipeDetails = () => {
       </div>
       <div className="form w-1/2 p-10 flex recipes-center">
         <form
-          onSubmit={handleSubmit(SubmitHandler)}
+          onSubmit={handleSubmit(UpdateHandler)}
           className="w-full max-w-lg space-y-5"
         >
           <h2 className="text-3xl font-black text-neutral-100">Edit Recipe</h2>
